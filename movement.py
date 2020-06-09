@@ -49,7 +49,7 @@ class move(object):
             b=self._kingstore[1]-colboard
             if (abs(a)>1) or (abs(b)>1):
                 return move.msg
-            if (abs(a)== 1) and (abs(b)== 1) and(abs(a)==abs(b)) or (self._kingstore[0]==rowboard or self._kingstore[1]==colboard):
+            elif (abs(a)== 1) and (abs(b)== 1) and(abs(a)==abs(b)) or (self._kingstore[0]==rowboard or self._kingstore[1]==colboard):
                 self._kingstore[0]+=(-a)
                 self._kingstore[1]+=(-b)
                 self._kingstate=False

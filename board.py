@@ -7,7 +7,14 @@ class board(Frame):
         self.master.geometry()
         self.master.resizable(0,1)
         self.grid()
+        #This was created to control the function <self._emp>
+        #so that it does store erroneous values, when the user
+        #mistakenly clicks an empty tile button 
         self._state=True
+        #creating the instance variable that stores the 
+        #piece and empty tile positions
+        self._piece=[]
+        self._emptile=[]
         #creating the images
         self._black=PhotoImage(file="./images/black.png")
         self._white=PhotoImage(file="./images/white.png")
@@ -44,18 +51,25 @@ class board(Frame):
                 else:
                     self._imagelabel=Button(self,image=self._black,text=None,command=lambda: self._emp([rows,cols,self._imagelabel["text"]]))
                     self._imagelabel.grid(row=rows,column=cols)
-        #self._a=Label(self,text=self._)
-        #self._a.grid(row=8,column=0)
-
-        #this portion collects the piece positon 
-        # and call the equivalent function
     def _piece(self,post):
-           pass
+            self._piece=post
+            self._state=not self._state
     def _emp(self,tile):
-        if self._state==True:
+        if self._state!=True:
+            self._emptile=tile
+            self._state=not self._state
             self._a=Label(self,text=str(tile))
             self._a.grid(row=8,column=0)
             #return tile[0],tile[1]
+        else:
+            pass
+    def _tilereplace(self,post):
+        if (post[0]+post[1])%2==0:
+            self._imagelabel=Button(self,image=self._white,text=None,command=lambda: self._emp([rows,cols,self._imagelabel["text"]]))
+            self._imagelabel.grid(row=post[0],column=post[1])
+        else:
+            self._imagelabel=Button(self,image=self._black,text=None,command=lambda: self._emp([rows,cols,self._imagelabel["text"]]))
+            self._imagelabel.grid(row=post[0],column=post[1])
 
 
         
