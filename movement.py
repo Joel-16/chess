@@ -9,14 +9,14 @@ class move(object):
         self._kingstate=True
         self._blackrook=True
         self._whiterook=True
-        self._blakrookstore=[7,0]
-        self._witerookstore=[7,7]
-        self._kingstore=[7,3]
-        self._queenstore=[7,4]
-        self._blakbshopstore=[7,2]
-        self._witebshopstore=[7,5]
-        self._witenite=[7,1]
-        self._blaknite=[7,6]
+        self._blakrookstore=[7,0,'blackrook']
+        self._witerookstore=[7,7,'whiterook']
+        self._kingstore=[7,3,'king']
+        self._queenstore=[7,4,'queen']
+        self._blakbshopstore=[7,2,'blackbishop']
+        self._witebshopstore=[7,5,'whitebishop']
+        self._witenite=[7,1,'whiteknight']
+        self._blaknite=[7,6,'blackknight']
         
     def _pawn(self,rows,cols,rowboard,colboard):
         """gets the position and desired position and moves it"""
@@ -41,10 +41,8 @@ class move(object):
     def king(self,rowboard,colboard):
         if (rowboard==7 and colboard==0)or (rowboard==7 and colboard==7):
             if (self._kingstate==True and self._blackrook==True) or (self._kingstate==True and self._whiterook==True):            
-                self._kingstore[0],self._kingstore[1]=self._castling(self._kingstore[0],self._kingstore[1],rowboard,colboard)
-                
+                self._kingstore[0],self._kingstore[1]=self._castling(self._kingstore[0],self._kingstore[1],rowboard,colboard)     
         else:
-            #(self._kingstate==True) or (self._kingstate== False)
             a=self._kingstore[0]-rowboard
             b=self._kingstore[1]-colboard
             if (abs(a)>1) or (abs(b)>1):
@@ -53,7 +51,6 @@ class move(object):
                 self._kingstore[0]+=(-a)
                 self._kingstore[1]+=(-b)
                 self._kingstate=False
-                print(self._kingstate,self._kingstore[0],self._kingstore[1])
                 return self._kingstore[0],self._kingstore[1] 
             else:
                 return move.msg
