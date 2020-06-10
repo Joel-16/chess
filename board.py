@@ -53,8 +53,8 @@ class board(Frame):
                     self._imagelabel=Button(self,image=self._black,text=None,command=lambda: self._emp(rows,cols,self._imagelabel["text"]))
                     self._imagelabel.grid(row=rows,column=cols)
     def _piece(self,post):
-            self._pieces=post
-            self._state=not self._state
+        self._pieces=post
+        self._state=not self._state
     def _emp(self,rows,cols,name):
         if self._state!=True:
             self._emptile=[rows,cols,name]
