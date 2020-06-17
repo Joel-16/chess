@@ -9,14 +9,14 @@ class move(object):
         self._kingstate=True
         self._blackrook=True
         self._whiterook=True
-        self._blakrookstore=[7,0,'blackrook']
-        self._witerookstore=[7,7,'whiterook']
-        self._kingstore=[7,3,'king']
-        self._queenstore=[7,4,'queen']
-        self._blakbshopstore=[7,2,'blackbishop']
-        self._witebshopstore=[7,5,'whitebishop']
-        self._witenite=[7,1,'whiteknight']
-        self._blaknite=[7,6,'blackknight']
+        self._blakrookstore=[7,0]
+        self._witerookstore=[7,7]
+        self._kingstore=[7,3]
+        self._queenstore=[7,4]
+        self._blakbshopstore=[7,2]
+        self._witebshopstore=[7,5]
+        self._witenite=[7,1]
+        self._blaknite=[7,6,]
         
     def _pawn(self,rows,cols,rowboard,colboard):
         """gets the position and desired position and moves it"""
@@ -38,7 +38,7 @@ class move(object):
             self.whiterook(7,4)
             print(self._kingstate)
             return rows,cols
-    def king(self,rowboard,colboard):
+    def _king(self,rowboard,colboard):
         if (rowboard==7 and colboard==0)or (rowboard==7 and colboard==7):
             if (self._kingstate==True and self._blackrook==True) or (self._kingstate==True and self._whiterook==True):            
                 self._kingstore[0],self._kingstore[1]=self._castling(self._kingstore[0],self._kingstore[1],rowboard,colboard)     
@@ -51,16 +51,17 @@ class move(object):
                 self._kingstore[0]+=(-a)
                 self._kingstore[1]+=(-b)
                 self._kingstate=False
-                return self._kingstore[0],self._kingstore[1] 
+                return self._kingstore[0],self._kingstore[1]
+                
             else:
                 return move.msg
-    def queen(self,rowboard,colboard):
+    def _queen(self,rowboard,colboard):
         a=self._queenstore[0]-rowboard
         b=self._queenstore[1]-colboard
         if (abs(a) in range (8)) and (abs(b)in range (8)) and(abs(a)==abs(b)) or (self._queenstore[0]==rowboard or self._queenstore[1]==colboard):
             self._queenstore[0]+=(-a)
             self._queenstore[1]+=(-b)
-            return self._queenstore[0], self._queenstore[1] 
+            #return self._queenstore[0], self._queenstore[1] 
         else:
             return move.msg
     def blackbishop(self,rowboard,colboard):
@@ -129,11 +130,4 @@ class move(object):
                 return move.msg
         else:
             return move.msg
-    def get(self):
-        store=[self._blakrookstore,
-            self._witerookstore,
-        self._kingstore,
-        self._queenstore,
-        self._blakbshopstore,
-        self._witebshopstore]
-        return store
+    
