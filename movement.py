@@ -38,7 +38,7 @@ class move(object):
             self.whiterook(7,4)
             print(self._kingstate)
             return rows,cols
-    def _king(self,rowboard,colboard):
+    def king(self,rowboard,colboard):
         if (rowboard==7 and colboard==0)or (rowboard==7 and colboard==7):
             if (self._kingstate==True and self._blackrook==True) or (self._kingstate==True and self._whiterook==True):            
                 self._kingstore[0],self._kingstore[1]=self._castling(self._kingstore[0],self._kingstore[1],rowboard,colboard)     
@@ -55,13 +55,13 @@ class move(object):
                 
             else:
                 return move.msg
-    def _queen(self,rowboard,colboard):
+    def queen(self,rowboard,colboard):
         a=self._queenstore[0]-rowboard
         b=self._queenstore[1]-colboard
         if (abs(a) in range (8)) and (abs(b)in range (8)) and(abs(a)==abs(b)) or (self._queenstore[0]==rowboard or self._queenstore[1]==colboard):
             self._queenstore[0]+=(-a)
             self._queenstore[1]+=(-b)
-            #return self._queenstore[0], self._queenstore[1] 
+            return self._queenstore[0], self._queenstore[1] 
         else:
             return move.msg
     def blackbishop(self,rowboard,colboard):

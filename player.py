@@ -1,6 +1,16 @@
-from movement import move
-class player(move):
+from threading import Thread,Condition
+class blackplayer(Thread):
     def __init__(self):
-        move.__init__(self)
+        Thread.__init__(self,name="black")
     def kill(self):
-        return move.get(self)
+
+
+
+        
+class whiteplayer(Thread):
+    def __init__(self):
+        Thread.__init__(self,name="white")
+        
+    def run(self):
+    
+
